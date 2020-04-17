@@ -1,0 +1,17 @@
+{% extends 'contactapp/base.html' %}
+{% block content %}
+    <div class="card" style="width: 18rem;">
+        <ul class="list-group list-group-flush">
+            {% for person in persons %}
+                <div>
+                    <li class="list-group-item"><a href="{% url 'contactapp:contact_detail' person.id %}">{{ person.full_name }}</a></li>
+                </div>
+            {% endfor %}
+        </ul>
+        <form action="{% url 'contactapp:contact_add' %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Add"/>
+        </form>
+    </div>
+
+{% endblock %}
